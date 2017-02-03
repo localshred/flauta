@@ -1,0 +1,12 @@
+# Generated and/or Dependencies
+node_modules/
+coverage/
+flow-typed/
+
+# Environment specific
+npm-debug.log
+yarn-error.log
+
+# Tools
+.projections.json
+.lvimrc

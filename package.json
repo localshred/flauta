@@ -1,0 +1,45 @@
+{
+  "name": "flauta",
+  "version": "0.1.0",
+  "description": "A rails-like server-side router for centralized route declaration. Includes path helpers and a printer script to inform you what routes are set and their properties.",
+  "main": "dist/index.js",
+  "repository": "https://github.com/localshred/flauta",
+  "author": "BJ Neilsen",
+  "license": "WTFPL",
+  "scripts": {
+    "test": "npm run test:unit:cov && npm run test:doctests && npm run test:flow && npm run test:lint",
+    "test:doctests": "./bin/doctests",
+    "test:flow": "flow check",
+    "test:unit": "jest",
+    "test:unit:cov": "jest -c config/jest.coverage.json",
+    "test:unit:cov:report": "open coverage/lcov-report/index.html",
+    "test:lint": "standard-flow | snazzy"
+  },
+  "dependencies": {
+    "pluralize": "^3.1.0",
+    "ramda": "^0.23.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-jest": "^18.0.0",
+    "babel-plugin-syntax-flow": "^6.18.0",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-1": "^6.22.0",
+    "babel-root-import": "^4.1.5",
+    "doctest": "^0.11.0",
+    "express": "^4.14.1",
+    "flow-bin": "^0.38.0",
+    "flow-typed": "^2.0.0",
+    "jest": "^18.1.0",
+    "snazzy": "^6.0.0",
+    "standard": "^8.6.0",
+    "standard-flow": "^1.0.0"
+  },
+  "jest": {
+    "testRegex": "test/unit/.+.test.js"
+  },
+  "peerDependencies": {
+    "express": "^4.14.1"
+  }
+}
