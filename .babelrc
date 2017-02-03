@@ -1,0 +1,9 @@
+{
+  "presets": ["es2015", "stage-1"],
+  "plugins": ["babel-root-import", "syntax-flow", "transform-flow-strip-types"],
+  "env": {
+    "test": {
+      "plugins": ["istanbul"]
+    }
+  }
+}
