@@ -2,11 +2,20 @@
   "name": "flauta",
   "version": "0.1.0",
   "description": "A rails-like server-side router for centralized route declaration. Includes path helpers and a printer script to inform you what routes are set and their properties.",
-  "main": "dist/index.js",
-  "repository": "https://github.com/localshred/flauta",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/localshred/flauta"
+  },
   "author": "BJ Neilsen",
   "license": "WTFPL",
+  "bin": "./bin/flauta.js",
+  "files": ["./lib/index.js", "./lib/dsl.js", "./lib/router.js", "./lib/lib/ramda-extensions.js", "./bin/flauta.js"],
   "scripts": {
+    "build": "npm run build:lib && npm run build:bin",
+    "build:lib": "rm -rf ./lib/**/*.js && mkdir -p lib && NODE_ENV=production babel --copy-files ./src --out-dir ./lib --ignore bin/flauta.js",
+    "build:bin": "NODE_ENV=production babel ./src/bin/flauta.js > ./bin/flauta.js",
+    "prepublish": "npm run build",
     "test": "npm run test:unit:cov && npm run test:doctests && npm run test:flow && npm run test:lint",
     "test:doctests": "./bin/doctests",
     "test:flow": "flow check",
@@ -40,6 +49,6 @@
     "testRegex": "test/unit/.+.test.js"
   },
   "peerDependencies": {
-    "express": "^4.14.1"
+    "express": ">=4.14.0 <5.0.0"
   }
 }

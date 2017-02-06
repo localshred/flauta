@@ -3,7 +3,7 @@
 import R from 'ramda'
 import path from 'path'
 import pluralize from 'pluralize'
-import { mergeIfPresent } from '~/src/lib/ramda-extensions'
+import { mergeIfPresent } from '~/src/ramda-extensions'
 
 export type HTTPMethod =
   'DELETE'

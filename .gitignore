@@ -1,3 +1,7 @@
+# Build artifacts
+bin/flauta.js
+lib/*
+
 # Generated and/or Dependencies
 node_modules/
 coverage/
@@ -10,3 +14,4 @@ yarn-error.log
 # Tools
 .projections.json
 .lvimrc
+cache
