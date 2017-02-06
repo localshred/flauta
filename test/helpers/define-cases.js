@@ -2,7 +2,7 @@
 /* eslint-env jest */
 
 import R from 'ramda'
-import { propOrLazy } from '~/src/lib/ramda-extensions'
+import { propOrLazy } from '~/src/ramda-extensions'
 
 export type TestCase<A, E> =
   | [A, E]
