@@ -86,5 +86,13 @@ export const propOrLazy = R.curry((prop: string, defaultThunk: () => any, target
 // The preceding pipe would perform three map transformations over myData, logging the transformed
 // data after each map.
 //
-export const tapLog = (tag: string): (...data: Array<any>) => any =>
-  R.tap((...data: Array<any>): any => R.call(R.bind(console.log, console), '-----', tag, ...data))
+export const tapLog = (tag: string, logger: (...data: Array<any>) => void = R.bind(console.log, console)): (...data: Array<any>) => any =>
+  R.tap(
+    (...data: Array<any>): any =>
+      R.call(
+        logger,
+        R.pipe(R.length, R.repeat('-'), R.join(''))(tag),
+        tag,
+        ...data
+      )
+  )

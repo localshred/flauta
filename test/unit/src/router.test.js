@@ -4,7 +4,7 @@
 import R from 'ramda'
 import express from 'express'
 import { buildPathHelpers, loadRoutes, register, registerExpressRoute, resolve,
-  routeModuleTupleToPathBuilder, safeRequireRouteModule } from '~/src/router'
+  routeModuleTupleToPathBuilder, safeRequireRouteModule, verifyHandlerExported } from '~/src/router'
 import { runTestCases } from '~/test/helpers/define-cases'
 
 describe('~/app/lib/router', () => {
@@ -290,6 +290,25 @@ describe('~/app/lib/router', () => {
 
       const actual = safeRequireRouteModule(route, moduleRequirer)
       expect(actual).toEqual([route, new Error(`Module ${route.require} not found`)])
+    })
+  })
+
+  describe('verifyHandlerExported', () => {
+    it('returns the module if the handler function is publicly exported in that module', () => {
+      const route = {handler: 'root', httpMethod: 'GET', path: 'api/v1', require: '~/app/controllers/home'}
+      const routeModule = {root: () => {}}
+
+      const actual = verifyHandlerExported(route.handler, routeModule)
+      expect(actual).toEqual(routeModule)
+    })
+
+    it('returns an error if the handler function is not publicly exported in that module', () => {
+      const route = {handler: 'root', httpMethod: 'GET', path: 'api/v1', require: '~/app/controllers/home'}
+      const routeModule = {other: () => {}}
+
+      const actual = verifyHandlerExported(route.handler, routeModule)
+      expect(actual).toBeInstanceOf(Error)
+      expect(actual.message).toBe('Controller module missing the handler function')
     })
   })
 })
