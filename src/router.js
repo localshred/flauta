@@ -41,7 +41,7 @@ export const buildPathHelpers = (
 
 export const loadRoutes = R.curryN(1, (
   routes: Array<?Route>,
-  safeModuleRequirer?: ModuleRequirer = safeRequireRouteModule,
+  safeModuleRequirer?: ModuleRequirer = safeRequireRouteModule
 ): Router =>
   R.pipe(
     R.flatten,
@@ -124,10 +124,18 @@ export const safeRequireRouteModule = (
   moduleRequirer: (path: string) => ?Object = require
 ): [Route, Object | Error] => {
   return R.tryCatch(
-    (route: Route) => [route, moduleRequirer(route.require)],
+    (route: Route) => [route, R.pipe(moduleRequirer, verifyHandlerExported(route.handler))(route.require)],
     (error: Error) => [route, error]
   )(route)
 }
+
+export const verifyHandlerExported = R.curry((handler: string, routeModule: mixed): mixed | Error =>
+  R.ifElse(
+    R.has(handler),
+    R.identity,
+    () => new Error('Controller module missing the handler function')
+  )(routeModule)
+)
 
 const pathPropertiesMatcher: (path: string) => Array<?string> = R.pipe(
   R.match(/(?:^|\/):([-a-zA-Z_]+)(?:\/|$)/g),
