@@ -58,7 +58,7 @@ export const register = (
   app: express$Application,
   router: Router,
   expressRouteRegistrar?: RouteRegistrar = registerExpressRoute
-) =>
+): Router =>
   R.over(
     R.lensProp('routes'),
     R.map(expressRouteRegistrar(app)),
@@ -92,7 +92,11 @@ export const resolve = R.curryN(1, (
 ): Router => {
   const loadedRoutes = routeLoader(routes)
   const cachedPaths = cachedPathsBuilder(loadedRoutes.routes)
-  return { routes: loadedRoutes.routes, paths: cachedPaths }
+
+  return R.pipe(
+    R.pick(['routes', 'invalidRoutes']),
+    R.assoc('paths', cachedPaths)
+  )(loadedRoutes)
 })
 
 export const routeModuleTupleToPathBuilder = (
@@ -118,11 +122,12 @@ export const routeModuleTupleToPathBuilder = (
 export const safeRequireRouteModule = (
   route: Route,
   moduleRequirer: (path: string) => ?Object = require
-): [Route, Object | Error] =>
-  R.tryCatch(
+): [Route, Object | Error] => {
+  return R.tryCatch(
     (route: Route) => [route, moduleRequirer(route.require)],
     (error: Error) => [route, error]
   )(route)
+}
 
 const pathPropertiesMatcher: (path: string) => Array<?string> = R.pipe(
   R.match(/(?:^|\/):([-a-zA-Z_]+)(?:\/|$)/g),

@@ -10,12 +10,19 @@
   "author": "BJ Neilsen",
   "license": "WTFPL",
   "bin": "bin/flauta.js",
-  "files": ["lib/index.js", "lib/dsl.js", "lib/router.js", "lib/lib/ramda-extensions.js", "bin/flauta.js"],
+  "files": [
+    "bin/flauta.js",
+    "lib/cli.js",
+    "lib/dsl.js",
+    "lib/index.js",
+    "lib/ramda-extensions.js",
+    "lib/router.js"
+  ],
   "scripts": {
-    "build": "npm run build:lib && npm run build:bin",
-    "build:lib": "echo 'Compiling lib...' && rm -rf lib/**/*.js && mkdir -p lib && NODE_ENV=production babel --copy-files src --out-dir lib --ignore bin/flauta.js",
-    "build:bin": "echo 'Compiling bin...' && NODE_ENV=production babel src/bin/flauta.js > bin/flauta.js",
-    "prepublish": "npm run build",
+    "build": "npm run build:lib",
+    "build:lib": "echo 'Compiling lib...' && mkdir -p lib && NODE_ENV=production babel --copy-files src --out-dir lib",
+    "clean": "rm -rf lib && mkdir lib",
+    "prepublish": "npm run clean && npm run build",
     "test": "npm run test:unit:cov && npm run test:doctests && npm run test:flow && npm run test:lint",
     "test:doctests": "bin/doctests",
     "test:flow": "flow check",
@@ -25,6 +32,7 @@
     "test:lint": "standard-flow | snazzy"
   },
   "dependencies": {
+    "minimist": "^1.2.0",
     "pluralize": "^3.1.0",
     "ramda": "^0.23.0"
   },
