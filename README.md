@@ -34,7 +34,7 @@ $ yarn add flauta
 Define your routes:
 
 ```javascript
-// server/routes.js
+// myapp/server/routes.js
 import flauta from 'flauta'
 
 // Provide a registration function pre-bound to your resolved routes
@@ -51,16 +51,28 @@ export resolve = flauta.resolve([
   flauta.namespace({path: '/', require: path.join(__dirname, 'controllers')}, [
 
     // Creates a route for the path / to be served by your server/controllers/home.js controller
-    // with the exported function 'root'.
+    // with the exported function 'root' handling the request.
     flauta.get('/', 'home', 'root'),
 
+    // If the resource doesn't have a corresponding controller it won't be registered
+    // and a warning will be printed when you print your route definitions (see below).
+    flauta.resource('bogus'),
+
+    // Nested namespaces join url and require paths with their parent
+    flauta.namespace({path: 'api/v1', require: 'api/v1'}, [
     // Creates 5 endpoints for working with the "users" resource:
-    // + GET /users (handler = index)
-    // + GET /users/:id (handler = get)
-    // + POST /users (handler = create)
-    // + PATCH /users/:id (handler = update)
-    // + DELETE /users/:id (handler = destroy)
+    // + GET /api/v1/users (handler = index)
+    // + GET /api/v1/users/:id (handler = show)
+    // + POST /api/v1/users (handler = create)
+    // + PATCH /api/v1/users/:id (handler = update)
+    // + DELETE /api/v1/users/:id (handler = destroy)
     flauta.resources('users'),
+
+    // Optionally restrict endpoints to register with 'only' or 'except' options:
+    flauta.resources('todos', {only: ['index', 'create', 'show']}),
+
+    // The inverse of above is:
+    // flauta.resources('todos', {except: ['update', 'destroy']}),
 
     // ...
   ]),
@@ -82,26 +94,70 @@ register(app)
 app.listen(process.env.PORT)
 ```
 
+## Controller definitions
+
+With flauta, a controller is simply a normal JS file that exports the expected handler functions. These
+functions are exactly the same as you would write in a normal express app. If you want to have middleware
+wrapping your endpoint handler just export an array of function references, the last being the route handler.
+
+
+An example without middleware:
+
+```javascript
+// myapp/server/controllers/home.js
+
+export function root(req, res) {
+  res.json({ message: 'Hello, World!" })
+}
+```
+
+An example with middelware:
+
+```javascript
+// myapp/server/controllers/home.js
+
+function authMiddleware(req, res, next) { ... }
+function loggerMiddleware(req, res, next) { ... }
+
+function rootHandler(req, res) {
+  res.json({ message: 'Hello, World!" })
+}
+
+export const root = [authMiddleware, loggerMiddleware, rootHandler]
+```
+
 ## Printing your route definitions
+
+In addition to the nicety of having all your routes defined in one place, we can actually provide a way
+to print them to see the resolved state of your server side routes, meaning we can know exactly which
+modules are required and used by our server, and which functions they expose to handle which endpoints.
+The printer script is also babel-aware.
 
 ```shell
 # If you don't need babel
 $ ./node_modules/.bin/flauta path/to/my/routes.js
 [Valid Routes]
-Path Helper         Verb      URI Pattern           Controller Module                                                        Handler
-                    GET       /                     /code/src/services/enrollment/app/server/controllers/home                root
-api-v1-offerings    GET       /api/v1/offerings     /code/src/services/enrollment/app/server/controllers/api/v1/offerings    index
-                    POST      /api/v1/foobar        /code/src/services/enrollment/app/server/controllers/api/v1/foobar       create
-                    DELETE    /api/v1/foobar/:id    /code/src/services/enrollment/app/server/controllers/api/v1/foobar       destroy
-api-v1-foobars      GET       /api/v1/foobar        /code/src/services/enrollment/app/server/controllers/api/v1/foobar       index
+Path Helper     Verb      URI Pattern          Controller Module                                      Handler
+                GET       /                    /code/src/myapp/app/server/controllers/home            root
+                POST      /api/v1/users        /code/src/myapp/app/server/controllers/api/v1/users    create
+                DELETE    /api/v1/users/:id    /code/src/myapp/app/server/controllers/api/v1/users    destroy
+api-v1-users    GET       /api/v1/users        /code/src/myapp/app/server/controllers/api/v1/users    index
+api-v1-user     GET       /api/v1/users/:id    /code/src/myapp/app/server/controllers/api/v1/users    show
+                PATCH     /api/v1/users/:id    /code/src/myapp/app/server/controllers/api/v1/users    update
+                POST      /api/v1/todos        /code/src/myapp/app/server/controllers/api/v1/todos    create
+api-v1-todos    GET       /api/v1/todos        /code/src/myapp/app/server/controllers/api/v1/todos    index
+api-v1-todo     GET       /api/v1/todos/:id    /code/src/myapp/app/server/controllers/api/v1/todos    show
 [Invalid Routes]
-Verb     URI Pattern           Controller Module                                                     Handler    Error
-GET      /api/v1/foobar/:id    /code/src/services/enrollment/app/server/controllers/api/v1/foobar    show       Controller module missing the handler function
-PATCH    /api/v1/foobar/:id    /code/src/services/enrollment/app/server/controllers/api/v1/foobar    update     Controller module missing the handler function
+Verb      URI Pattern    Controller Module                               Handler    Error
+POST      /bogus         /code/src/myapp/app/server/controllers/bogus    create     Cannot find module '/code/src/myapp/app/server/controllers/bogus'
+DELETE    /bogus/:id     /code/src/myapp/app/server/controllers/bogus    destroy    Cannot find module '/code/src/myapp/app/server/controllers/bogus'
+GET       /bogus         /code/src/myapp/app/server/controllers/bogus    index      Cannot find module '/code/src/myapp/app/server/controllers/bogus'
+GET       /bogus/:id     /code/src/myapp/app/server/controllers/bogus    show       Cannot find module '/code/src/myapp/app/server/controllers/bogus'
+PATCH     /bogus/:id     /code/src/myapp/app/server/controllers/bogus    update     Cannot find module '/code/src/myapp/app/server/controllers/bogus'
 ```
 
 ```shell
-# Or if you do need babel
+# Or if you need to use babel-register
 $ ./node_modules/.bin/flauta --babel -- path/to/my/routes.js
 ```
 
