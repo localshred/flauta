@@ -100,7 +100,7 @@ GET      /api/v1/foobar/:id    /code/src/services/enrollment/app/server/controll
 PATCH    /api/v1/foobar/:id    /code/src/services/enrollment/app/server/controllers/api/v1/foobar    update     Controller module missing the handler function
 ```
 
-```
+```shell
 # Or if you do need babel
 $ ./node_modules/.bin/flauta --babel -- path/to/my/routes.js
 ```
