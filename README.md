@@ -60,19 +60,22 @@ export resolve = flauta.resolve([
 
     // Nested namespaces join url and require paths with their parent
     flauta.namespace({path: 'api/v1', require: 'api/v1'}, [
-    // Creates 5 endpoints for working with the "users" resource:
-    // + GET /api/v1/users (handler = index)
-    // + GET /api/v1/users/:id (handler = show)
-    // + POST /api/v1/users (handler = create)
-    // + PATCH /api/v1/users/:id (handler = update)
-    // + DELETE /api/v1/users/:id (handler = destroy)
-    flauta.resources('users'),
+      // Creates 5 endpoints for working with the "users" resource:
+      // + GET /api/v1/users (handler = index)
+      // + GET /api/v1/users/:id (handler = show)
+      // + POST /api/v1/users (handler = create)
+      // + PATCH /api/v1/users/:id (handler = update)
+      // + DELETE /api/v1/users/:id (handler = destroy)
+      flauta.resources('users'),
 
-    // Optionally restrict endpoints to register with 'only' or 'except' options:
-    flauta.resources('todos', {only: ['index', 'create', 'show']}),
+      // Optionally restrict endpoints to register with 'only' or 'except' options:
+      flauta.resources('todos', {only: ['index', 'create', 'show']}),
 
-    // The inverse of above is:
-    // flauta.resources('todos', {except: ['update', 'destroy']}),
+      // The inverse of above is:
+      // flauta.resources('todos', {except: ['update', 'destroy']}),
+
+      // ...
+    ]),
 
     // ...
   ]),
