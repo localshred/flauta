@@ -23,7 +23,7 @@
   "scripts": {
     "build": "npm run build:lib && npm run build:docs",
     "build:lib": "echo 'Compiling lib...' && mkdir -p lib && NODE_ENV=production babel --copy-files src --out-dir lib",
-    "build:docs": "jsdoc -c config/jsdoc-conf.json -d docs -R README.md src/*",
+    "build:docs": "rm -rf docs && jsdoc -c config/jsdoc-conf.json -d docs -R README.md src/*",
     "clean": "rm -rf lib && mkdir lib && rm -rf docs",
     "prepublish": "npm run clean && npm run build",
     "test": "npm run test:unit:cov -- --no-cache && npm run test:flow && npm run test:lint",
