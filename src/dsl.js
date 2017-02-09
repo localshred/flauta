@@ -1,4 +1,5 @@
 /* @flow */
+/** @namespace dsl */
 
 import R from 'ramda'
 import path from 'path'
