@@ -23,7 +23,7 @@ describe('~/src/dsl', () => {
     )
   })
 
-  describe('methods', () => {
+  describe('route methods', () => {
     const testArgs = ['foo', 'bar', 'baz']
     const testExpectation = {path: 'foo', require: 'bar', handler: 'baz'}
 
