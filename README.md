@@ -3,6 +3,8 @@
 Flauta is configuration library that aims to provide a single-location routing DSL for server applications.
 If you've used Rails before think [`config/routes.rb`][routes-rb]. Currently supports only Express.
 
+[View on Github](/)
+
 Some features include:
 
 + Single file to declare all routes for use with Express.
