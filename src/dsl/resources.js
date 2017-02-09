@@ -11,7 +11,7 @@ import pluralize from 'pluralize'
 
 /**
  * @typedef {string} ResourceType
- * @memberof dsl/
+ * @memberof dsl/resources
  */
 export type ResourceType =
   'create'
@@ -124,7 +124,7 @@ export const index = (resourceName: string, options?: RouteOptions): Route => {
 /**
  * pathJoiner with ':id' partiall applied as the second argument.
  *
- * @memberof dsl
+ * @memberof dsl/resources
  * @function resourceIdPath
  * @static
  * @param {string} path - Initial path to join /:id onto the end of.
@@ -141,7 +141,7 @@ export const resourceIdPath: (path: string) => string =
 /**
  * Fetches the `as` property from the given options, defaulting to the `resourcePath` if none is found.
  *
- * @memberof dsl
+ * @memberof dsl/resources
  * @function resourcePath
  * @static
  * @param {string} resourceName - The name of the resource to use as the default if the `as` RouteOptions property is missing.
