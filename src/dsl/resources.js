@@ -2,8 +2,9 @@
 /** @namespace dsl/resources */
 
 import R from 'ramda'
-import { destroy as httpDelete, get, patch, post, resourceIdPath,
-  type Route, type RouteOptions } from '~/src/dsl'
+import { pathJoiner } from '~/src/dsl'
+import { destroy as httpDelete, get, patch, post,
+  type Route, type RouteOptions } from '~/src/dsl/http'
 import { mergeIfPresent } from '~/src/ramda-extensions'
 
 import pluralize from 'pluralize'
@@ -119,6 +120,23 @@ export const index = (resourceName: string, options?: RouteOptions): Route => {
     mergedOptions
   )
 }
+
+/**
+ * pathJoiner with ':id' partiall applied as the second argument.
+ *
+ * @memberof dsl
+ * @function resourceIdPath
+ * @static
+ * @param {string} path - Initial path to join /:id onto the end of.
+ * @returns {string} - The joined path.
+ * @see {@link dsl/pathJoiner}
+ * @example
+ *
+ * > resourceIdPath('foo/bar')
+ * 'foo/bar/:id'
+ */
+export const resourceIdPath: (path: string) => string =
+  pathJoiner(R.__, ':id')
 
 /**
  * Fetches the `as` property from the given options, defaulting to the `resourcePath` if none is found.

@@ -3,7 +3,7 @@
 
 import R from 'ramda'
 
-import { type Route } from '~/src/dsl'
+import { type Route } from '~/src/dsl/http'
 
 /**
  * @typedef {function} PathHelpersBuilder

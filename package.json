@@ -14,6 +14,7 @@
     "bin/flauta.js",
     "lib/cli.js",
     "lib/dsl.js",
+    "lib/dsl/http.js",
     "lib/dsl/resources.js",
     "lib/index.js",
     "lib/ramda-extensions.js",
