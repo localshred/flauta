@@ -64,7 +64,7 @@
     "testRegex": "test/unit/.+.test.js"
   },
   "peerDependencies": {
-    "express": ">=4.14.0 <5.0.0"
+    "express": "^4.14.1"
   },
   "nyc": {
     "exclude": [
