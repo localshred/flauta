@@ -2,8 +2,7 @@ language: node_js
 node_js: 
   - 6
   - node
-install:
-  - yarn
+before_script:
   - ./node_modules/.bin/flow-typed install
 env:
   - NODE_ENV=test
