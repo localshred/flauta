@@ -118,7 +118,7 @@ An example without middleware:
 // myapp/server/controllers/home.js
 
 export function root(req, res) {
-  res.json({ message: 'Hello, World!" })
+  res.json({ message: 'Hello, World!' })
 }
 ```
 
@@ -131,7 +131,7 @@ function authMiddleware(req, res, next) { ... }
 function loggerMiddleware(req, res, next) { ... }
 
 function rootHandler(req, res) {
-  res.json({ message: 'Hello, World!" })
+  res.json({ message: 'Hello, World!' })
 }
 
 export const root = [authMiddleware, loggerMiddleware, rootHandler]
