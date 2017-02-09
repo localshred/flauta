@@ -34,7 +34,7 @@
     "test:unit": "NODE_ENV=test jest",
     "test:unit:cov": "NODE_ENV=test jest -c config/jest.coverage.json",
     "test:unit:cov:report": "open coverage/lcov-report/index.html",
-    "test:lint": "standard-flow | snazzy"
+    "test:lint": "standard-flow src test | snazzy"
   },
   "dependencies": {
     "minimist": "^1.2.0",
