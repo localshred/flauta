@@ -42,7 +42,7 @@ export const register = (app) => flauta.register(app, resolve())
 
 // Define and resolve your routes. "Resolving" means to require all the controllers and ensure
 // the expected handler functions are exported by those modules.
-export resolve = flauta.resolve([
+export const resolve = flauta.resolve([
 
   // Configures the router to look for all your controllers in the server/controllers/ file tree.
   // NOTE: Since flauta will require your controllers for you, the base require path MUST be an
