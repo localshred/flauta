@@ -1,0 +1,6 @@
+{
+  "opts": {
+    "template": "node_modules/minami"
+  },
+  "plugins": ["node_modules/jsdoc-babel"]
+}
