@@ -6,7 +6,6 @@ lib/*
 node_modules/
 coverage/
 flow-typed/
-docs/
 
 # Environment specific
 npm-debug.log

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>dsl - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="dsl.html">dsl</a><ul class='methods'><li data-type='method'><a href="dsl.html#.applyNamespaceToRoute">applyNamespaceToRoute</a></li><li data-type='method'><a href="dsl.html#.namespace">namespace</a></li><li data-type='method'><a href="dsl.html#.pathJoiner">pathJoiner</a></li></ul></li><li><a href="dsl_http.html">dsl/http</a><ul class='methods'><li data-type='method'><a href="dsl_http.html#.destroy">destroy</a></li><li data-type='method'><a href="dsl_http.html#.get">get</a></li><li data-type='method'><a href="dsl_http.html#.head">head</a></li><li data-type='method'><a href="dsl_http.html#.patch">patch</a></li><li data-type='method'><a href="dsl_http.html#.post">post</a></li><li data-type='method'><a href="dsl_http.html#.put">put</a></li><li data-type='method'><a href="dsl_http.html#.route">route</a></li></ul></li><li><a href="dsl_resources.html">dsl/resources</a><ul class='methods'><li data-type='method'><a href="dsl_resources.html#.create">create</a></li><li data-type='method'><a href="dsl_resources.html#.destroy">destroy</a></li><li data-type='method'><a href="dsl_resources.html#.index">index</a></li><li data-type='method'><a href="dsl_resources.html#.resourceIdPath">resourceIdPath</a></li><li data-type='method'><a href="dsl_resources.html#.resourcePath">resourcePath</a></li><li data-type='method'><a href="dsl_resources.html#.resources">resources</a></li><li data-type='method'><a href="dsl_resources.html#.show">show</a></li><li data-type='method'><a href="dsl_resources.html#.update">update</a></li></ul></li><li><a href="ramda-extensions.html">ramda-extensions</a><ul class='methods'><li data-type='method'><a href="ramda-extensions.html#.isPresent">isPresent</a></li><li data-type='method'><a href="ramda-extensions.html#.mergeIfPresent">mergeIfPresent</a></li><li data-type='method'><a href="ramda-extensions.html#.propOrLazy">propOrLazy</a></li><li data-type='method'><a href="ramda-extensions.html#.tapLog">tapLog</a></li></ul></li><li><a href="router.html">router</a><ul class='methods'><li data-type='method'><a href="router.html#.buildPathHelpers">buildPathHelpers</a></li><li data-type='method'><a href="router.html#.loadRoutes">loadRoutes</a></li><li data-type='method'><a href="router.html#.register">register</a></li><li data-type='method'><a href="router.html#.registerExpresssRoute">registerExpresssRoute</a></li><li data-type='method'><a href="router.html#.resolve">resolve</a></li><li data-type='method'><a href="router.html#.routeModuleTupleToPathBuilder">routeModuleTupleToPathBuilder</a></li><li data-type='method'><a href="router.html#.safeRequireRouteModule">safeRequireRouteModule</a></li><li data-type='method'><a href="router.html#.verifyHandlerExported">verifyHandlerExported</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">dsl</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        dsl
+        </h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dsl.js.html">dsl.js</a>, <a href="dsl.js.html#line65">line 65</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".applyNamespaceToRoute"><span class="type-signature">(static) </span>applyNamespaceToRoute<span class="signature">(namespaceDefinition, namespacedRoute)</span><span class="type-signature"> &rarr; {Route}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Adjusts the Route's require and path properties, prepending those from the namespace definition.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>namespaceDefinition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">NamespaceDefintion</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The namespace definition arguments (e.g. require & path).</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>namespacedRoute</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Route</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The Route to update with the given definition.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dsl.js.html">dsl.js</a>, <a href="dsl.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - The Route with the require and path properties modified.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Route</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".namespace"><span class="type-signature">(static) </span>namespace<span class="signature">(namespaceDefinition, namespacedRoutes)</span><span class="type-signature"> &rarr; {Array.&lt;Route>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Wraps a list of route and/or namespace definitions to provide additional namespace context for
+the require and URL paths of the nested routes.
+
+Generally this will be the first and only entry of the outer level of your routes definition.
+The outer namespace definition should provide an absolute require path so that this library can
+require the controller files correctly.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>namespaceDefinition</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">NamespaceDefintion</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The namespace definition arguments (e.g. require & path).</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>namespacedRoutes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Route></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A list of Route definitions which should apply to this namepsace.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dsl.js.html">dsl.js</a>, <a href="dsl.js.html#line48">line 48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - Returns the child routes with their require and url properties adjusted.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Route></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".pathJoiner"><span class="type-signature">(static) </span>pathJoiner<span class="signature">(pathPart1, pathPart2)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Curried version of path.join to allow easier partial application.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pathPart1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">First part of the path</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>pathPart2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">second part of the path</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dsl.js.html">dsl.js</a>, <a href="dsl.js.html#line71">line 71</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - The joined path.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>> pathJoiner('foo', 'bar')
+'foo/bar'
+
+> const usersPath = pathJoiner('users')
+> usersPath('sally')
+> 'users/sally'
+
+> pathJoiner('users')('sally')
+> 'users/sally'
+
+> const idPath = pathJoiner(R.__, ':id')
+> idPath('users')
+'users/:id'</code></pre>
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id=".NamespaceDefinition">NamespaceDefinition</h4>
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>require</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The require path of the namespace that all child routes should inherit. Should be an absolute path.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The URL path of the namespace that all child routes should inherit.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>as</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The namespace's alias.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dsl.js.html">dsl.js</a>, <a href="dsl.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Feb 09 2017 12:37:16 GMT-0700 (MST) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
