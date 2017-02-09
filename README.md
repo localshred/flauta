@@ -1,9 +1,14 @@
 # Flauta
 
+[![npm](https://img.shields.io/npm/v/flauta.svg)](https://www.npmjs.com/package/flauta)
+[![flauta license](https://img.shields.io/npm/l/flauta.svg)](https://github.com/localshred/flauta/blob/master/COPYING)
+[![Build Status](https://travis-ci.org/localshred/flauta.svg?branch=master)](https://travis-ci.org/localshred/flauta)
+[![docs](https://img.shields.io/badge/docs-latest-lightgrey.svg)](https://localshred.github.io/flauta)
+[![view source on github](https://img.shields.io/badge/github-view_source-lightgrey.svg)](https://github.com/localshred/flauta)
+
+
 Flauta is configuration library that aims to provide a single-location routing DSL for server applications.
 If you've used Rails before think [`config/routes.rb`][routes-rb]. Currently supports only Express.
-
-[View on Github](/)
 
 Some features include:
 
