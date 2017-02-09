@@ -35,6 +35,7 @@ Define your routes:
 
 ```javascript
 // myapp/server/routes.js
+import R from 'ramda'
 import flauta from 'flauta'
 
 // Provide a registration function pre-bound to your resolved routes
@@ -42,7 +43,7 @@ export const register = (app) => flauta.register(app, resolve())
 
 // Define and resolve your routes. "Resolving" means to require all the controllers and ensure
 // the expected handler functions are exported by those modules.
-export const resolve = flauta.resolve([
+export const resolve = R.once(() => flauta.resolve([
 
   // Configures the router to look for all your controllers in the server/controllers/ file tree.
   // NOTE: Since flauta will require your controllers for you, the base require path MUST be an
@@ -81,7 +82,7 @@ export const resolve = flauta.resolve([
   ]),
 
   // ...
-])
+]))
 ```
 
 Then in your server file, import your `register` function and provide it with your express app:
@@ -162,6 +163,36 @@ PATCH     /bogus/:id     /code/src/myapp/app/server/controllers/bogus    update 
 ```shell
 # Or if you need to use babel-register
 $ ./node_modules/.bin/flauta --babel -- path/to/my/routes.js
+```
+
+## Using path helpers
+
+
+```javascript
+// myapp/server/routes.js
+import R from 'ramda'
+import flauta from 'flauta'
+
+export const resolve = R.once(() => flauta.resolve([
+  flauta.namespace({path: '/', require: path.join(__dirname, 'controllers')}, [
+    flauta.resources('users'),
+
+    flauta.namespace({path: 'api/v1', require: 'api/v1'}, [
+      flauta.resources('todos'),
+    ]),
+  ]),
+]))
+
+// somewhere else in your app
+import { resolve } from '../path/to/server/routes'
+
+const { paths } = resolve()
+
+paths.users() // => '/users'
+paths.user({ id: '123' }) // => '/users/123'
+
+paths['api-v1-todos']() // => '/api/v1/todos'
+paths['api-v1-todo']({ id: '123' }) // => '/api/v1/todos/123'
 ```
 
   [routes-rb]: http://guides.rubyonrails.org/routing.html#listing-existing-routes "Rails Routing Guide"
