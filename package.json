@@ -1,6 +1,6 @@
 {
   "name": "flauta",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A rails-like server-side router for centralized route declaration. Includes path helpers and a printer script to inform you what routes are set and their properties.",
   "main": "lib/index.js",
   "repository": {
