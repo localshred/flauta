@@ -37,6 +37,7 @@
     "test:lint": "standard-flow src test | snazzy"
   },
   "dependencies": {
+    "express": "^4.14.1",
     "minimist": "^1.2.0",
     "pluralize": "^3.1.0",
     "ramda": "^0.23.0"
@@ -62,9 +63,6 @@
   },
   "jest": {
     "testRegex": "test/unit/.+.test.js"
-  },
-  "peerDependencies": {
-    "express": "^4.14.1"
   },
   "nyc": {
     "exclude": [
