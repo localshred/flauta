@@ -24,7 +24,7 @@
     "lib/router.js"
   ],
   "scripts": {
-    "build": "npm test && npm run build:lib && npm run build:docs",
+    "build": "npm run build:lib && npm run build:docs",
     "build:lib": "echo 'Compiling lib...' && mkdir -p lib && NODE_ENV=production babel --copy-files src --out-dir lib",
     "build:docs": "rm -rf docs && jsdoc -c config/jsdoc-conf.json -d docs -R README.md src/*",
     "clean": "rm -rf lib && mkdir lib && rm -rf docs",
