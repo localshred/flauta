@@ -1,5 +1,4 @@
 # Build artifacts
-bin/flauta.js
 lib/*
 
 # Generated and/or Dependencies
